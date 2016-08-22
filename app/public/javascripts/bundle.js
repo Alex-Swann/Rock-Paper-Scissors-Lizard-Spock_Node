@@ -56,6 +56,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// jshint esversion:6
 	_reactDom2.default.render(_react2.default.createElement(
 	  'h1',
 	  null,

@@ -23,7 +23,7 @@ import game from './routes/game';
     outputStyle: 'compressed'
   }));
 
-  app.use(express.static('./src/app/public'));
+  app.use(express.static('./app/public'));
 
   app.use('/game', game);
 

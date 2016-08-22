@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "webpack-watch": "webpack -w",
-    "express-server": "node ./src/app/server",
+    "express-server": "node ./app/server",
     "dev": "concurrent --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
