@@ -1,0 +1,34 @@
+{
+  "name": "rock-paper-scissors-lizard-spock",
+  "version": "1.0.0",
+  "description": "An interactive extended RPS game built with Node.js",
+  "main": "server.js",
+  "scripts": {
+    "dev": "PORT=4001 nodemon --exec babel-node app/server.js",
+    "prestart": "babel app --out-dir dist",
+    "start": "PORT=4000 node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Swann/Rock-Paper-Scissors-Lizard-Spock_Node.git"
+  },
+  "author": "Alex Swann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-Swann/Rock-Paper-Scissors-Lizard-Spock_Node/issues"
+  },
+  "homepage": "https://github.com/Alex-Swann/Rock-Paper-Scissors-Lizard-Spock_Node#readme",
+  "dependencies": {
+    "es6-module-loader": "^0.17.11",
+    "express": "^4.14.0",
+    "node-sass-middleware": "^0.9.8",
+    "nunjucks": "^2.4.2",
+    "react": "^15.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.13.2",
+    "babel-preset-es2015": "^6.13.2",
+    "nodemon": "^1.10.2"
+  }
+}
