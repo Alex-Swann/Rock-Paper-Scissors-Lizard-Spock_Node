@@ -1,3 +1,124 @@
-body {
-  background-color: white;
+$sidebar-width: 200px;
+
+html {
+	background: -webkit-linear-gradient(#fe8c00 10%, #f83600 90%); /* Chrome 10+, Saf5.1+ */
+	background:    -moz-linear-gradient(#fe8c00 10%, #f83600 90%); /* FF3.6+ */
+	background:     -ms-linear-gradient(#fe8c00 10%, #f83600 90%); /* IE10 */
+	background:      -o-linear-gradient(#fe8c00 10%, #f83600 90%); /* Opera 11.10+ */
+	background:         linear-gradient(#fe8c00 10%, #f83600 90%); /* W3C */
+	min-height: 100%;
+	* {
+		outline: 0;
+	}
+}
+
+section {
+	height: 120px;
+	width: 600px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background-color: #fff;
+	padding: 10px;
+	margin-top: -100px;
+	margin-left: -310px + $sidebar-width / 2;
+	border-radius: 6px;
+	box-shadow: 0 1px 0 0 rgba(0,0,0,0.4);
+	button {
+		background: 0;
+		border: 0;
+		height: 120px;
+		width: 20%;
+		float: left;
+		.fa {
+			font-size: 80px;
+			display: block;
+			margin-bottom: 20px;
+		}
+		&:hover {
+			/*background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/209282/play.png');
+			background-size: contain;
+			background-repeat: no-repeat;*/
+		}
+		&.win { color: #15a015; }
+		&.loss { color: #ff1515; }
+		&.tie { color: #1515ff; }
+	}
+	.result {
+		position: absolute;
+		text-align: center;
+		font-size: 28px;
+		height: 40px;
+		color: #fff;
+		top: -40px;
+		right: 0;
+		left: 0;
+		.animated {
+			-webkit-animation-duration: 1.7s;
+			animation-duration: 1.7s;
+		}
+	}
+}
+aside {
+	background-color: #e9eaed;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	position: fixed;
+	width: $sidebar-width;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	.legend {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: $sidebar-width;
+		background-color: #fff;
+		height: 50px;
+		border-top: 1px solid rgba(0,0,0,0.1);
+		box-shadow: rgba(0,0,0,0.15) 0 1px 10px 0;
+		.me, .cpu {
+			height: 40px;
+			line-height: 40px;
+			font-size: 14px;
+			width: 50%;
+			float: left;
+			text-align: center;
+			padding: 0.3rem 0;
+		}
+	}
+	.history-item {
+		height: 40px;
+		font-size: 24px;
+		line-height: 40px;
+		border-bottom: 1px solid rgba(0,0,0,0.1);
+		&.win { background-color: rgba(0,150,0,0.1); }
+		&.loss { background-color: rgba(150,0,0,0.1); }
+		&.tie { background-color: rgba(0,0,150,0.1); }
+		.fa {
+			text-align: center;
+			width: 50%;
+		}
+	}
+	.scoreboard {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: $sidebar-width;
+		background-color: #fff;
+		height: 50px;
+		border-top: 1px solid rgba(0,0,0,0.1);
+		box-shadow: rgba(0,0,0,0.15) 0 -1px 10px 0;
+		.win, .loss, .tie, .move {
+			height: 40px;
+			line-height: 20px;
+			font-size: 11px;
+			width: 25%;
+			float: left;
+			text-align: center;
+			padding: 0.3rem 0;
+		}
+	}
 }

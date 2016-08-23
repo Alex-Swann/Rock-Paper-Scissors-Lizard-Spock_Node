@@ -46,6 +46,13 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ChoicesSection = exports.Choices = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -56,12 +63,78 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// jshint esversion:6
-	_reactDom2.default.render(_react2.default.createElement(
-	  'h1',
-	  null,
-	  'Hello, world!'
-	), document.getElementById('root'));
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // jshint esversion:6
+
+
+	var $options = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+
+	var Choices = exports.Choices = function (_React$Component) {
+	  _inherits(Choices, _React$Component);
+
+	  function Choices() {
+	    _classCallCheck(this, Choices);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Choices).apply(this, arguments));
+	  }
+
+	  _createClass(Choices, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'span',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { id: '{this.props.name}', 'data-play': '{this.props.name}' },
+	          _react2.default.createElement('i', { className: 'fa fa-hand-{this.props.name}-o' }),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            this.props.name
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Choices;
+	}(_react2.default.Component);
+
+	var ChoicesSection = exports.ChoicesSection = function (_React$Component2) {
+	  _inherits(ChoicesSection, _React$Component2);
+
+	  function ChoicesSection() {
+	    _classCallCheck(this, ChoicesSection);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ChoicesSection).apply(this, arguments));
+	  }
+
+	  _createClass(ChoicesSection, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'section',
+	        null,
+	        _react2.default.createElement(Choices, { name: 'rock' }),
+	        _react2.default.createElement(Choices, { name: 'paper' }),
+	        _react2.default.createElement(Choices, { name: 'scissors' }),
+	        _react2.default.createElement(Choices, { name: 'lizard' }),
+	        _react2.default.createElement(Choices, { name: 'spock' }),
+	        _react2.default.createElement('div', { className: 'result' })
+	      );
+	    }
+	  }]);
+
+	  return ChoicesSection;
+	}(_react2.default.Component);
+
+	;
+
+	_reactDom2.default.render(_react2.default.createElement(ChoicesSection, null), document.getElementById('root'));
 
 /***/ },
 /* 1 */
