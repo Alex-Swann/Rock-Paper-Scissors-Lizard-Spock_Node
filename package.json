@@ -4,7 +4,7 @@
   "description": "An interactive extended RPS game built with Node.js",
   "main": "server.js",
   "scripts": {
-    "webpack-watch": "webpack -w",
+    "webpack-watch": "./node_modules/.bin/webpack -w",
     "express-server": "node ./app/server",
     "dev": "concurrent --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
