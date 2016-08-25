@@ -21464,10 +21464,49 @@
 	  function Layout() {
 	    _classCallCheck(this, Layout);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Layout).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Layout).call(this));
+
+	    _this.state = {
+	      computer: _this.randomPick(),
+	      games: []
+	    };
+
+	    _this.randomPick = _this.randomPick.bind(_this);
+	    _this.play = _this.play.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Layout, [{
+	    key: 'play',
+	    value: function play(option) {
+	      var game = {};
+
+	      if (this.state.computer === option) {
+	        game.result = 1;
+	      } else if (this.state.computer === "Rock" && option === "Paper" || this.state.computer === "Paper" && option === "Scissors" || this.state.computer === "Scissors" && option === "Rock") {
+	        game.result = 2;
+	      } else {
+	        game.result = 0;
+	      }
+
+	      game.computer = this.state.computer;
+	      game.player = option;
+
+	      var games = this.state.games;
+	      games.push(game);
+
+	      var random = this.randomPick();
+
+	      this.setState({ games: games, computer: random });
+	      console.log(this.state.games);
+	    }
+	  }, {
+	    key: 'randomPick',
+	    value: function randomPick() {
+	      var weapons = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+	      return weapons[Math.floor(Math.random() * weapons.length)];
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -21476,11 +21515,11 @@
 	        _react2.default.createElement(
 	          'section',
 	          null,
-	          _react2.default.createElement(_Choices2.default, { name: 'rock' }),
-	          _react2.default.createElement(_Choices2.default, { name: 'paper' }),
-	          _react2.default.createElement(_Choices2.default, { name: 'scissors' }),
-	          _react2.default.createElement(_Choices2.default, { name: 'lizard' }),
-	          _react2.default.createElement(_Choices2.default, { name: 'spock' }),
+	          _react2.default.createElement(_Choices2.default, { name: 'rock', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'paper', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'scissors', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'lizard', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'spock', play: this.play }),
 	          _react2.default.createElement('div', { className: 'result' })
 	        ),
 	        _react2.default.createElement(_Aside2.default, null)
@@ -21529,15 +21568,18 @@
 	  }
 
 	  _createClass(Choices, [{
+	    key: "createAction",
+	    value: function createAction() {}
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var style = "fa fa-hand-" + this.props.name + "-o";
 	      return _react2.default.createElement(
 	        "span",
-	        { onClick: this.createAction },
+	        null,
 	        _react2.default.createElement(
 	          "button",
-	          { id: this.props.name, "data-play": this.props.name },
+	          { id: this.props.name, "data-play": this.props.name, onClick: this.props.play.bind(this, this.props.name) },
 	          _react2.default.createElement("i", { className: style }),
 	          _react2.default.createElement(
 	            "span",
