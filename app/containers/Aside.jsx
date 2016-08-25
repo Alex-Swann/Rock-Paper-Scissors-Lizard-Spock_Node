@@ -7,8 +7,8 @@ export default class Aside extends React.Component {
   render(){
     return (
       <aside>
-        <Legend name='legend'></Legend>
-        <Score name='scoreboard'></Score>
+        <Legend name='legend'/>
+        <Score name='scoreboard'/>
       </aside>
     );
   }

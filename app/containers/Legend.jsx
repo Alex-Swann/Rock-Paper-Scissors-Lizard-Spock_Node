@@ -4,7 +4,7 @@ import React from 'react';
 export default class Legend extends React.Component {
   render(){
     return (
-      <div>
+      <div className={this.props.name}>
         <div className="me">
           <div>Me</div>
         </div>

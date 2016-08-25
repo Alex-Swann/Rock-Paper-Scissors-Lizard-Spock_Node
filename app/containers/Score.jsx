@@ -4,7 +4,7 @@ import React from 'react';
 export default class Score extends React.Component {
   render(){
     return (
-      <div>
+      <div className={this.props.name}>
         <div className="win">
     			<span>0</span>
     			<div>wins</div>

@@ -13,9 +13,6 @@ html {
   html * {
     outline: 0; }
 
-.poo {
-  background-color: black; }
-
 section {
   height: 120px;
   width: 600px;
