@@ -1,7 +1,6 @@
 // jshint esversion:6
 import express from 'express';
 import nunjucks from 'nunjucks';
-import sass from 'node-sass-middleware';
 import game from './routes/game';
 
 ;(function(exports){
@@ -16,12 +15,6 @@ import game from './routes/game';
     watch: true,
     express: app
   });
-
-  app.use(sass({
-    src: __dirname + '/sass',
-    dest:__dirname + '/public',
-    outputStyle: 'compressed'
-  }));
 
   app.use(express.static('./app/public'));
 
