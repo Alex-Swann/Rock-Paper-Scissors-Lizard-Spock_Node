@@ -19,11 +19,9 @@ export default class extends React.Component {
   message(){
     var lastGame = this.props.games.slice(-1)[0];
 
-    if(lastGame.result !== 'tie'){
-      return lastGame.result === 'win' ? lastGame.player+' beat '+lastGame.computer : lastGame.computer+' beat '+lastGame.player;
-    } else {
-      return "It's a tie!";
-    }
+    return lastGame.result === 'tie' ? "It's a tie!" :
+            lastGame.result === 'win' ? lastGame.player+' beat '+lastGame.computer :
+            lastGame.computer+' beat '+lastGame.player;
   }
 
   resetMessageElement(element){

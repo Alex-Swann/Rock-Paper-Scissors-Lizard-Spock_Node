@@ -15,6 +15,7 @@ export default class extends React.Component {
       children.push(<div key={children.length} className={item}><i className={imageOne}></i><i className={imageTwo}></i></div>);
     }
 
+
   render(){
     return (
       <aside id='aside'>

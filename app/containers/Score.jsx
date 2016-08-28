@@ -1,24 +1,41 @@
 // jshint esversion:6
 import React from 'react';
 
-var win = 0,
-    tie = 0,
-    loss = 0;
+var win = 0, tie = 0, loss = 0, total = 0;
 
 export default class extends React.Component {
   componentWillReceiveProps(){
-        win = 0,
-        tie = 0,
-        loss = 0;
+    win = 0, tie = 0, loss = 0;
 
-    for(var i = 1; i < this.props.stats.length; i++){
-      if(this.props.stats[i].result === 'win'){
-        win ++;
-      } else {
-        this.props.stats[i].result === 'tie' ? tie++ : loss++ ;
-      }
+    this.statCount();
+    total = this.props.stats.length - 1;
+    this.endGame();
+  }
+
+  endGame(){
+    if(this.props.stats.length === 4){
+      setTimeout(()=>{
+        alert(this.message());
+        this.reload();
+      }, 100);
     }
+  }
 
+  message(){
+    return win > loss ? 'You Won!!!' :
+           loss > win ? "Computer Won! You Lost... :'-(" :
+           "It's a tie!...zzzzzz!";
+  }
+
+  reload(){
+    window.location.href = '/';
+  }
+
+  statCount(){
+    for(var i = 1; i < this.props.stats.length; i++){
+      this.props.stats[i].result === 'win' ? win++ :
+      this.props.stats[i].result === 'tie' ? tie++ : loss++
+    }
   }
 
   render(){

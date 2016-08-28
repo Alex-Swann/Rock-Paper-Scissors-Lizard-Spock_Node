@@ -27158,9 +27158,9 @@
 	      return weapons[Math.floor(Math.random() * weapons.length)];
 	    }
 	  }, {
-	    key: 'resetGame',
-	    value: function resetGame() {
-	      this.setState({ games: [''] });
+	    key: 'reload',
+	    value: function reload() {
+	      window.location.href = '/';
 	    }
 	  }, {
 	    key: 'result',
@@ -27170,11 +27170,6 @@
 	      } else {
 	        return 'loss';
 	      }
-	    }
-	  }, {
-	    key: 'reload',
-	    value: function reload() {
-	      window.location.href = '/';
 	    }
 	  }, {
 	    key: 'render',
@@ -27258,9 +27253,10 @@
 	  }
 
 	  _createClass(_class, [{
-	    key: 'resultColor',
-	    value: function resultColor(result) {
-	      this.setState({ colour: result });
+	    key: 'click',
+	    value: function click() {
+	      res = this.props.play(this.props.name);
+	      this.resultColor(res[1]);
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
@@ -27270,10 +27266,9 @@
 	      }
 	    }
 	  }, {
-	    key: 'click',
-	    value: function click() {
-	      res = this.props.play(this.props.name);
-	      this.resultColor(res[1]);
+	    key: 'resultColor',
+	    value: function resultColor(result) {
+	      this.setState({ colour: result });
 	    }
 	  }, {
 	    key: 'render',
@@ -27468,7 +27463,8 @@
 
 	var win = 0,
 	    tie = 0,
-	    loss = 0;
+	    loss = 0,
+	    total = 0;
 
 	var _class = function (_React$Component) {
 	  _inherits(_class, _React$Component);
@@ -27484,12 +27480,37 @@
 	    value: function componentWillReceiveProps() {
 	      win = 0, tie = 0, loss = 0;
 
+	      this.statCount();
+	      total = this.props.stats.length - 1;
+	      this.endGame();
+	    }
+	  }, {
+	    key: 'endGame',
+	    value: function endGame() {
+	      var _this2 = this;
+
+	      if (this.props.stats.length === 4) {
+	        setTimeout(function () {
+	          alert(_this2.message());
+	          _this2.reload();
+	        }, 100);
+	      }
+	    }
+	  }, {
+	    key: 'message',
+	    value: function message() {
+	      return win > loss ? 'You Won!!!' : loss > win ? "Computer Won! You Lost... :'-(" : "It's a tie!...zzzzzz!";
+	    }
+	  }, {
+	    key: 'reload',
+	    value: function reload() {
+	      window.location.href = '/';
+	    }
+	  }, {
+	    key: 'statCount',
+	    value: function statCount() {
 	      for (var i = 1; i < this.props.stats.length; i++) {
-	        if (this.props.stats[i].result === 'win') {
-	          win++;
-	        } else {
-	          this.props.stats[i].result === 'tie' ? tie++ : loss++;
-	        }
+	        this.props.stats[i].result === 'win' ? win++ : this.props.stats[i].result === 'tie' ? tie++ : loss++;
 	      }
 	    }
 	  }, {
@@ -27618,11 +27639,7 @@
 	    value: function message() {
 	      var lastGame = this.props.games.slice(-1)[0];
 
-	      if (lastGame.result !== 'tie') {
-	        return lastGame.result === 'win' ? lastGame.player + ' beat ' + lastGame.computer : lastGame.computer + ' beat ' + lastGame.player;
-	      } else {
-	        return "It's a tie!";
-	      }
+	      return lastGame.result === 'tie' ? "It's a tie!" : lastGame.result === 'win' ? lastGame.player + ' beat ' + lastGame.computer : lastGame.computer + ' beat ' + lastGame.player;
 	    }
 	  }, {
 	    key: 'resetMessageElement',

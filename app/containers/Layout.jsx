@@ -34,10 +34,9 @@ export default class extends React.Component{
     return weapons[Math.floor(Math.random() * weapons.length)];
   }
 
-  resetGame(){
-    this.setState({ games: ['']});
+  reload(){
+    window.location.href = '/';
   }
-
 
   result(option){
     if ((this.state.computer === "rock" && (option === "paper" || option === "spock")) ||
@@ -52,11 +51,6 @@ export default class extends React.Component{
     }
   }
 
-  reload(){
-    window.location.href = '/';
-  }
-
-
   render(){
     return (
       <div>
@@ -65,11 +59,11 @@ export default class extends React.Component{
         </h1>
       <div>
         <section>
-            <Choices name='rock' play={this.play} />
-            <Choices name='paper'play={this.play} />
-            <Choices name='scissors' play={this.play} />
-            <Choices name='lizard' play={this.play} />
-            <Choices name='spock' play={this.play} />
+            <Choices name='rock' play={this.play}/>
+            <Choices name='paper'play={this.play}/>
+            <Choices name='scissors' play={this.play}/>
+            <Choices name='lizard' play={this.play}/>
+            <Choices name='spock' play={this.play}/>
             <Message games={this.state.games}/>
         </section>
         <Aside games={this.state.games}></Aside>

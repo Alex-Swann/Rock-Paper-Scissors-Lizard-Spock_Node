@@ -13,8 +13,9 @@ export default class extends React.Component{
     };
   }
 
-  resultColor(result){
-    this.setState({ colour: result });
+  click(){
+    res = this.props.play(this.props.name);
+    this.resultColor(res[1]);
   }
 
   componentWillReceiveProps(nextProps){
@@ -23,11 +24,9 @@ export default class extends React.Component{
     }
   }
 
-  click(){
-    res = this.props.play(this.props.name);
-    this.resultColor(res[1]);
+  resultColor(result){
+    this.setState({ colour: result });
   }
-
 
   render(){
     const style = "fa fa-hand-"+ this.props.name + "-o";
