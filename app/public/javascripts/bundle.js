@@ -21449,6 +21449,10 @@
 
 	var _Aside2 = _interopRequireDefault(_Aside);
 
+	var _Message = __webpack_require__(178);
+
+	var _Message2 = _interopRequireDefault(_Message);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21511,12 +21515,12 @@
 	        _react2.default.createElement(
 	          'section',
 	          null,
-	          _react2.default.createElement(_Choices2.default, { name: 'rock', play: this.play, l: true }),
-	          _react2.default.createElement(_Choices2.default, { name: 'paper', play: this.play, l: true }),
-	          _react2.default.createElement(_Choices2.default, { name: 'scissors', play: this.play, l: true }),
-	          _react2.default.createElement(_Choices2.default, { name: 'lizard', play: this.play, l: true }),
-	          _react2.default.createElement(_Choices2.default, { name: 'spock', play: this.play, l: true }),
-	          _react2.default.createElement('div', { className: 'result' })
+	          _react2.default.createElement(_Choices2.default, { name: 'rock', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'paper', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'scissors', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'lizard', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'spock', play: this.play }),
+	          _react2.default.createElement(_Message2.default, { games: this.state.games })
 	        ),
 	        _react2.default.createElement(_Aside2.default, { games: this.state.games })
 	      );
@@ -21875,6 +21879,86 @@
 	}(_react2.default.Component);
 
 	exports.default = Score;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // jshint esversion:6
+
+
+	var Aside = function (_React$Component) {
+	  _inherits(Aside, _React$Component);
+
+	  function Aside() {
+	    _classCallCheck(this, Aside);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Aside).apply(this, arguments));
+	  }
+
+	  _createClass(Aside, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      var message = this.message();
+	      var element = document.getElementById('result');
+	      this.resetMessageElement(element);
+	      element.appendChild(this.fadingDiv(message));
+	    }
+	  }, {
+	    key: 'fadingDiv',
+	    value: function fadingDiv(message) {
+	      var fadingMessage = document.createElement('div');
+	      fadingMessage.className = "animated fadeOutUp";
+	      fadingMessage.innerHTML = message;
+	      return fadingMessage;
+	    }
+	  }, {
+	    key: 'message',
+	    value: function message() {
+	      var lastGame = this.props.games.slice(-1)[0];
+
+	      if (lastGame.result !== 'tie') {
+	        return lastGame.result === 'win' ? lastGame.player + ' beat ' + lastGame.computer : lastGame.computer + ' beat ' + lastGame.player;
+	      } else {
+	        return "It's a tie!";
+	      }
+	    }
+	  }, {
+	    key: 'resetMessageElement',
+	    value: function resetMessageElement(element) {
+	      while (element.firstChild) {
+	        element.removeChild(element.firstChild);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', { className: 'result', id: 'result' });
+	    }
+	  }]);
+
+	  return Aside;
+	}(_react2.default.Component);
+
+	exports.default = Aside;
 
 /***/ }
 /******/ ]);

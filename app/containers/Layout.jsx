@@ -2,6 +2,7 @@
 import React from 'react';
 import Choices from './Choices.jsx';
 import Aside from './Aside.jsx';
+import Message from './Message.jsx';
 
 export default class Layout extends React.Component{
   constructor() {
@@ -51,12 +52,12 @@ export default class Layout extends React.Component{
     return (
       <div>
         <section>
-            <Choices name='rock' play={this.play} l/>
-            <Choices name='paper'play={this.play} l/>
-            <Choices name='scissors' play={this.play} l/>
-            <Choices name='lizard' play={this.play} l/>
-            <Choices name='spock' play={this.play} l/>
-            <div className="result"></div>
+            <Choices name='rock' play={this.play} />
+            <Choices name='paper'play={this.play} />
+            <Choices name='scissors' play={this.play} />
+            <Choices name='lizard' play={this.play} />
+            <Choices name='spock' play={this.play} />
+            <Message games={this.state.games}/>
         </section>
         <Aside games={this.state.games}></Aside>
       </div>
