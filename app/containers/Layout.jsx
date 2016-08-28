@@ -9,8 +9,7 @@ export default class Layout extends React.Component{
 
     this.state = {
       computer: this.randomPick(),
-      games: [],
-      colour: ''
+      games: []
     };
 
     this.play = this.play.bind(this);
@@ -18,7 +17,6 @@ export default class Layout extends React.Component{
 
 
   play(option) {
-    this.setState({ colour: ''});
     var game = {};
     this.setState({ computer: this.randomPick() });
     game.result = this.state.computer === option ? 'tie' : this.result(option);
@@ -47,10 +45,6 @@ export default class Layout extends React.Component{
     } else {
       return 'loss';
     }
-  }
-
-  click(){
-    this.setState({colour:''});
   }
 
   render(){

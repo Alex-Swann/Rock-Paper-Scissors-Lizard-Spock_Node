@@ -21468,8 +21468,7 @@
 
 	    _this.state = {
 	      computer: _this.randomPick(),
-	      games: [],
-	      colour: ''
+	      games: []
 	    };
 
 	    _this.play = _this.play.bind(_this);
@@ -21479,7 +21478,6 @@
 	  _createClass(Layout, [{
 	    key: 'play',
 	    value: function play(option) {
-	      this.setState({ colour: '' });
 	      var game = {};
 	      this.setState({ computer: this.randomPick() });
 	      game.result = this.state.computer === option ? 'tie' : this.result(option);
@@ -21504,11 +21502,6 @@
 	      } else {
 	        return 'loss';
 	      }
-	    }
-	  }, {
-	    key: 'click',
-	    value: function click() {
-	      this.setState({ colour: '' });
 	    }
 	  }, {
 	    key: 'render',
