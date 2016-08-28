@@ -10,52 +10,59 @@ export default class Layout extends React.Component{
     this.state = {
       computer: this.randomPick(),
       games: [],
+      colour: ''
     };
 
-    this.randomPick = this.randomPick.bind(this);
     this.play = this.play.bind(this);
   }
 
+
   play(option) {
+    this.setState({ colour: ''});
     var game = {};
-
-    if (this.state.computer === option) {
-      game.result = 1;
-    } else if ( (this.state.computer === "Rock" && option === "Paper") ||
-                (this.state.computer === "Paper" && option === "Scissors") ||
-                (this.state.computer === "Scissors" && option === "Rock") ) {
-      game.result = 2;
-    } else {
-      game.result = 0;
-    }
-
+    this.setState({ computer: this.randomPick() });
+    game.result = this.state.computer === option ? 'tie' : this.result(option);
     game.computer = this.state.computer;
     game.player = option;
 
-    var games = this.state.games;
-    games.push(game);
-
-    var random = this.randomPick();
-
-    this.setState({games, computer: random});
+    this.state.games.push(game);
     console.log(this.state.games);
+    return [option, game.result];
   }
 
   randomPick(){
     var weapons = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
-		return weapons[Math.floor(Math.random() * weapons.length)];
+    return weapons[Math.floor(Math.random() * weapons.length)];
+  }
+
+
+  result(option){
+    if ((this.state.computer === "rock" && (option === "paper" || option === "spock")) ||
+        (this.state.computer === "paper" && (option === "scissors" || option === "lizard")) ||
+        (this.state.computer === "scissors" && (option === "rock" || option === "spock")) ||
+        (this.state.computer === "lizard" && (option === "rock" || option === "scissors")) ||
+        (this.state.computer === "spock" && (option === "lizard" || option === "paper"))
+                ) {
+      return 'win';
+    } else {
+      return 'loss';
+    }
+  }
+
+  click(){
+    this.setState({colour:''});
   }
 
   render(){
     return (
       <div>
         <section>
-          <Choices name='rock' play={this.play}/>
-          <Choices name='paper'play={this.play}/>
-          <Choices name='scissors' play={this.play}/>
-          <Choices name='lizard' play={this.play}/>
-          <Choices name='spock' play={this.play}/>
-          <div className="result"></div>
+            <Choices name='rock' play={this.play} l/>
+            <Choices name='paper'play={this.play} l/>
+            <Choices name='scissors' play={this.play} l/>
+            <Choices name='lizard' play={this.play} l/>
+            <Choices name='spock' play={this.play} l/>
+            <div className="result"></div>
         </section>
         <Aside></Aside>
       </div>

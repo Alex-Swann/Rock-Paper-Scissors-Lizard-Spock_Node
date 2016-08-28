@@ -21468,10 +21468,10 @@
 
 	    _this.state = {
 	      computer: _this.randomPick(),
-	      games: []
+	      games: [],
+	      colour: ''
 	    };
 
-	    _this.randomPick = _this.randomPick.bind(_this);
 	    _this.play = _this.play.bind(_this);
 	    return _this;
 	  }
@@ -21479,32 +21479,36 @@
 	  _createClass(Layout, [{
 	    key: 'play',
 	    value: function play(option) {
+	      this.setState({ colour: '' });
 	      var game = {};
-
-	      if (this.state.computer === option) {
-	        game.result = 1;
-	      } else if (this.state.computer === "Rock" && option === "Paper" || this.state.computer === "Paper" && option === "Scissors" || this.state.computer === "Scissors" && option === "Rock") {
-	        game.result = 2;
-	      } else {
-	        game.result = 0;
-	      }
-
+	      this.setState({ computer: this.randomPick() });
+	      game.result = this.state.computer === option ? 'tie' : this.result(option);
 	      game.computer = this.state.computer;
 	      game.player = option;
 
-	      var games = this.state.games;
-	      games.push(game);
-
-	      var random = this.randomPick();
-
-	      this.setState({ games: games, computer: random });
+	      this.state.games.push(game);
 	      console.log(this.state.games);
+	      return [option, game.result];
 	    }
 	  }, {
 	    key: 'randomPick',
 	    value: function randomPick() {
 	      var weapons = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 	      return weapons[Math.floor(Math.random() * weapons.length)];
+	    }
+	  }, {
+	    key: 'result',
+	    value: function result(option) {
+	      if (this.state.computer === "rock" && (option === "paper" || option === "spock") || this.state.computer === "paper" && (option === "scissors" || option === "lizard") || this.state.computer === "scissors" && (option === "rock" || option === "spock") || this.state.computer === "lizard" && (option === "rock" || option === "scissors") || this.state.computer === "spock" && (option === "lizard" || option === "paper")) {
+	        return 'win';
+	      } else {
+	        return 'loss';
+	      }
+	    }
+	  }, {
+	    key: 'click',
+	    value: function click() {
+	      this.setState({ colour: '' });
 	    }
 	  }, {
 	    key: 'render',
@@ -21515,11 +21519,11 @@
 	        _react2.default.createElement(
 	          'section',
 	          null,
-	          _react2.default.createElement(_Choices2.default, { name: 'rock', play: this.play }),
-	          _react2.default.createElement(_Choices2.default, { name: 'paper', play: this.play }),
-	          _react2.default.createElement(_Choices2.default, { name: 'scissors', play: this.play }),
-	          _react2.default.createElement(_Choices2.default, { name: 'lizard', play: this.play }),
-	          _react2.default.createElement(_Choices2.default, { name: 'spock', play: this.play }),
+	          _react2.default.createElement(_Choices2.default, { name: 'rock', play: this.play, l: true }),
+	          _react2.default.createElement(_Choices2.default, { name: 'paper', play: this.play, l: true }),
+	          _react2.default.createElement(_Choices2.default, { name: 'scissors', play: this.play, l: true }),
+	          _react2.default.createElement(_Choices2.default, { name: 'lizard', play: this.play, l: true }),
+	          _react2.default.createElement(_Choices2.default, { name: 'spock', play: this.play, l: true }),
 	          _react2.default.createElement('div', { className: 'result' })
 	        ),
 	        _react2.default.createElement(_Aside2.default, null)
@@ -21537,7 +21541,7 @@
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21558,34 +21562,52 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // jshint esversion:6
 
 
+	var res;
+
 	var Choices = function (_React$Component) {
 	  _inherits(Choices, _React$Component);
 
-	  function Choices() {
+	  function Choices(props) {
 	    _classCallCheck(this, Choices);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Choices).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Choices).call(this, props));
+
+	    _this.state = {
+	      colour: ''
+	    };
+	    return _this;
 	  }
 
 	  _createClass(Choices, [{
-	    key: "createAction",
-	    value: function createAction() {}
+	    key: 'resultColor',
+	    value: function resultColor(result) {
+	      this.setState({ colour: result });
+	    }
 	  }, {
-	    key: "render",
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (this.props.name !== res[0]) {
+	        this.setState({ colour: '' });
+	      }
+	    }
+	  }, {
+	    key: 'click',
+	    value: function click() {
+	      res = this.props.play(this.props.name);
+	      this.resultColor(res[1]);
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      var style = "fa fa-hand-" + this.props.name + "-o";
 	      return _react2.default.createElement(
-	        "span",
-	        null,
+	        'button',
+	        { id: this.props.name, 'data-play': this.props.name, onClick: this.click.bind(this), className: this.state.colour },
+	        _react2.default.createElement('i', { className: style }),
 	        _react2.default.createElement(
-	          "button",
-	          { id: this.props.name, "data-play": this.props.name, onClick: this.props.play.bind(this, this.props.name) },
-	          _react2.default.createElement("i", { className: style }),
-	          _react2.default.createElement(
-	            "span",
-	            null,
-	            this.props.name
-	          )
+	          'span',
+	          null,
+	          this.props.name
 	        )
 	      );
 	    }
