@@ -21468,7 +21468,7 @@
 
 	    _this.state = {
 	      computer: _this.randomPick(),
-	      games: []
+	      games: ['']
 	    };
 
 	    _this.play = _this.play.bind(_this);
@@ -21485,7 +21485,6 @@
 	      game.player = option;
 
 	      this.state.games.push(game);
-	      console.log(this.state.games);
 	      return [option, game.result];
 	    }
 	  }, {
@@ -21519,7 +21518,7 @@
 	          _react2.default.createElement(_Choices2.default, { name: 'spock', play: this.play, l: true }),
 	          _react2.default.createElement('div', { className: 'result' })
 	        ),
-	        _react2.default.createElement(_Aside2.default, null)
+	        _react2.default.createElement(_Aside2.default, { games: this.state.games })
 	      );
 	    }
 	  }]);
@@ -21644,6 +21643,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // jshint esversion:6
 
 
+	var children = [];
+
 	var Aside = function (_React$Component) {
 	  _inherits(Aside, _React$Component);
 
@@ -21654,12 +21655,28 @@
 	  }
 
 	  _createClass(Aside, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      var lastGame = this.props.games.slice(-1)[0];
+	      var item = "history-item " + lastGame.result;
+	      var imageOne = "fa fa-hand-" + lastGame.player + "-o";
+	      var imageTwo = "fa fa-hand-" + lastGame.computer + "-o";
+
+	      children.push(_react2.default.createElement(
+	        'div',
+	        { key: children.length, className: item },
+	        _react2.default.createElement('i', { className: imageOne }),
+	        _react2.default.createElement('i', { className: imageTwo })
+	      ));
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'aside',
-	        null,
+	        { id: 'aside' },
 	        _react2.default.createElement(_Legend2.default, { name: 'legend' }),
+	        children,
 	        _react2.default.createElement(_Score2.default, { name: 'scoreboard' })
 	      );
 	    }
