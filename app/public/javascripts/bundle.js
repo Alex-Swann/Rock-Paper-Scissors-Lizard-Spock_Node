@@ -21677,7 +21677,7 @@
 	        { id: 'aside' },
 	        _react2.default.createElement(_Legend2.default, { name: 'legend' }),
 	        children,
-	        _react2.default.createElement(_Score2.default, { name: 'scoreboard' })
+	        _react2.default.createElement(_Score2.default, { name: 'scoreboard', stats: this.props.games })
 	      );
 	    }
 	  }]);
@@ -21758,7 +21758,7 @@
 /* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21779,6 +21779,10 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // jshint esversion:6
 
 
+	var win = 0,
+	    tie = 0,
+	    loss = 0;
+
 	var Score = function (_React$Component) {
 	  _inherits(Score, _React$Component);
 
@@ -21789,65 +21793,78 @@
 	  }
 
 	  _createClass(Score, [{
-	    key: "render",
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps() {
+	      win = 0, tie = 0, loss = 0;
+
+	      for (var i = 1; i < this.props.stats.length; i++) {
+	        if (this.props.stats[i].result === 'win') {
+	          win++;
+	        } else {
+	          this.props.stats[i].result === 'tie' ? tie++ : loss++;
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
+	        'div',
 	        { className: this.props.name },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "win" },
+	          'div',
+	          { className: 'win' },
 	          _react2.default.createElement(
-	            "span",
+	            'span',
 	            null,
-	            "0"
+	            win
 	          ),
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
-	            "wins"
+	            'wins'
 	          )
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "tie" },
+	          'div',
+	          { className: 'tie' },
 	          _react2.default.createElement(
-	            "span",
+	            'span',
 	            null,
-	            "0"
+	            tie
 	          ),
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
-	            "ties"
+	            'ties'
 	          )
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "loss" },
+	          'div',
+	          { className: 'loss' },
 	          _react2.default.createElement(
-	            "span",
+	            'span',
 	            null,
-	            "0"
+	            loss
 	          ),
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
-	            "losses"
+	            'losses'
 	          )
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "move" },
+	          'div',
+	          { className: 'move' },
 	          _react2.default.createElement(
-	            "span",
+	            'span',
 	            null,
-	            "0"
+	            this.props.stats.length - 1
 	          ),
 	          _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
-	            "total"
+	            'total'
 	          )
 	        )
 	      );

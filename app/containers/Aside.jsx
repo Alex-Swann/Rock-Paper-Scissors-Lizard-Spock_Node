@@ -11,7 +11,7 @@ export default class Aside extends React.Component {
       var item = "history-item " + lastGame.result;
       var imageOne = "fa fa-hand-" + lastGame.player + "-o";
       var imageTwo = "fa fa-hand-" + lastGame.computer + "-o";
-      
+
       children.push(<div key={children.length} className={item}><i className={imageOne}></i><i className={imageTwo}></i></div>);
     }
 
@@ -20,7 +20,7 @@ export default class Aside extends React.Component {
       <aside id='aside'>
         <Legend name='legend'/>
         {children}
-        <Score name='scoreboard'/>
+        <Score name='scoreboard' stats={this.props.games}/>
       </aside>
     );
   }
