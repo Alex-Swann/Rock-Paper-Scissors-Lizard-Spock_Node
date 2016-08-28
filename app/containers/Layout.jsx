@@ -3,8 +3,9 @@ import React from 'react';
 import Choices from './Choices.jsx';
 import Aside from './Aside.jsx';
 import Message from './Message.jsx';
+import { Link } from 'react-router';
 
-export default class Layout extends React.Component{
+export default class extends React.Component{
   constructor() {
     super();
 
@@ -33,6 +34,10 @@ export default class Layout extends React.Component{
     return weapons[Math.floor(Math.random() * weapons.length)];
   }
 
+  resetGame(){
+    this.setState({ games: ['']});
+  }
+
 
   result(option){
     if ((this.state.computer === "rock" && (option === "paper" || option === "spock")) ||
@@ -47,9 +52,17 @@ export default class Layout extends React.Component{
     }
   }
 
+  reload(){
+    window.location.href = '/';
+  }
+
 
   render(){
     return (
+      <div>
+        <h1 id='header'>
+          <button onClick={this.reload.bind(this)}>New Game</button>
+        </h1>
       <div>
         <section>
             <Choices name='rock' play={this.play} />
@@ -60,6 +73,7 @@ export default class Layout extends React.Component{
             <Message games={this.state.games}/>
         </section>
         <Aside games={this.state.games}></Aside>
+      </div>
       </div>
     )
   }

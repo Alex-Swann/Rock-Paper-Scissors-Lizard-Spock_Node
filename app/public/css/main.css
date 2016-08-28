@@ -13,6 +13,11 @@ html {
   html * {
     outline: 0; }
 
+#header {
+  text-align: center;
+  padding-left: 4em;
+  transform: scale(1.4); }
+
 section {
   height: 120px;
   width: 600px;

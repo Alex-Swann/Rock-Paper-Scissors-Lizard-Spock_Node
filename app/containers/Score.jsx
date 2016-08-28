@@ -5,7 +5,7 @@ var win = 0,
     tie = 0,
     loss = 0;
 
-export default class Score extends React.Component {
+export default class extends React.Component {
   componentWillReceiveProps(){
         win = 0,
         tie = 0,

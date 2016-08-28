@@ -1,7 +1,7 @@
 // jshint esversion:6
 import React from 'react';
 
-export default class Legend extends React.Component {
+export default class extends React.Component {
   render(){
     return (
       <div className={this.props.name}>

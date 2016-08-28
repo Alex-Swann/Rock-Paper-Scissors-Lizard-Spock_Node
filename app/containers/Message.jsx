@@ -1,7 +1,7 @@
 // jshint esversion:6
 import React from 'react';
 
-export default class Aside extends React.Component {
+export default class extends React.Component {
   componentWillReceiveProps(nextProps){
       var message = this.message();
       var element = document.getElementById('result');

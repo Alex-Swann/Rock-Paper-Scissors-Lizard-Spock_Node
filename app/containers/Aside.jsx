@@ -5,12 +5,12 @@ import Score from './Score.jsx';
 
 var children = [];
 
-export default class Aside extends React.Component {
+export default class extends React.Component {
   componentWillReceiveProps(nextProps){
-      var lastGame = this.props.games.slice(-1)[0];
-      var item = "history-item " + lastGame.result;
-      var imageOne = "fa fa-hand-" + lastGame.player + "-o";
-      var imageTwo = "fa fa-hand-" + lastGame.computer + "-o";
+      var lastGame = this.props.games.slice(-1)[0],
+          item = "history-item " + lastGame.result,
+          imageOne = "fa fa-hand-" + lastGame.player + "-o",
+          imageTwo = "fa fa-hand-" + lastGame.computer + "-o";
 
       children.push(<div key={children.length} className={item}><i className={imageOne}></i><i className={imageTwo}></i></div>);
     }

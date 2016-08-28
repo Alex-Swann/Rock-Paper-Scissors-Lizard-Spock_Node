@@ -3,7 +3,7 @@ import React from 'react';
 
 var res;
 
-export default class Choices extends React.Component{
+export default class extends React.Component{
 
   constructor(props) {
     super(props);

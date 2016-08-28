@@ -4,7 +4,7 @@
   "description": "An interactive extended RPS game built with Node.js",
   "main": "server.js",
   "scripts": {
-    "webpack-watch": "./node_modules/.bin/webpack -w",
+    "webpack-watch": "webpack -w",
     "express-server": "node ./app/server",
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,9 +21,11 @@
   "homepage": "https://github.com/Alex-Swann/Rock-Paper-Scissors-Lizard-Spock_Node#readme",
   "dependencies": {
     "express": "^4.14.0",
+    "history": "^1.17.0",
     "nunjucks": "^2.4.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-router": "^2.7.0",
     "webpack": "^1.13.2"
   },
   "devDependencies": {
