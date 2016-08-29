@@ -29,4 +29,6 @@ $ npm test
 
 - I would have liked to redirect to a different route using React's router to display the result of each game rather than a standard JS alert.
 
+- I would have liked to reset the state of all my components when starting a new game rather than reloading the page. They both equate to the same thing but the latter feels cleaner and more efficient. When I rebuild this with Redux this should be easier to achieve.
+
 - I would have liked to have time to adjust the style of the RPS page to mimic the layout of Clearscore's website thus giving the impression it might have been built using a potential personalised frontend toolkit. Additionally it would have been nice to rewrite all my SASS styling following BEM. 
