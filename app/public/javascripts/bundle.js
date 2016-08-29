@@ -27182,7 +27182,7 @@
 	          { id: 'header' },
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.reload.bind(this) },
+	            { className: 'new-game', onClick: this.reload.bind(this) },
 	            'New Game'
 	          )
 	        ),
@@ -27276,7 +27276,7 @@
 	      var style = "fa fa-hand-" + this.props.name + "-o";
 	      return _react2.default.createElement(
 	        'button',
-	        { id: this.props.name, 'data-play': this.props.name, onClick: this.click.bind(this), className: this.state.colour },
+	        { 'data-play': this.props.name, onClick: this.click.bind(this), className: this.state.colour },
 	        _react2.default.createElement('i', { className: style }),
 	        _react2.default.createElement(
 	          'span',
