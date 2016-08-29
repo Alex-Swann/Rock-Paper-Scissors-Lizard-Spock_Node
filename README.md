@@ -25,8 +25,8 @@ $ npm test
 
 - As I was totally new to React, I had to initially spike a lot of code in order to understand it. Due to this, when setting up my tests, it became apparent that the possible structure of my code inhibited enzyme's ability to locate the buttons on the page. I setup additional tests I would have liked to get working but I commented them out due to this. If I had more time I would have started again and then written out the bulk of my JSX components through the proper TDD way of red-green-refactor. Thus allowing further tests to be carried out and to ensure the code I had was potentially better structured.
 
-- After trying to pass around a lot of state between components, it would be great to implement Redux into this project to potentially make my code cleaner and make it easier to manipulate the state of my components. I plan in the coming weeks to potentially go over this again but using a React-Redux setup.
+- It would be great to implement Redux into this project to potentially make my code cleaner and make it easier to manipulate the state of my components. I plan in the coming weeks to potentially go over this again but using a React-Redux setup.
 
 - I would have liked to redirect to a different route using React's router to display the result of each game rather than a standard JS alert.
 
-- I would have liked to have time to adjust the style of the RPS page to mimic the layout of Clearscore's website thus giving the impression it might have been built using a potential personalised frontend toolkit.
+- I would have liked to have time to adjust the style of the RPS page to mimic the layout of Clearscore's website thus giving the impression it might have been built using a potential personalised frontend toolkit. Additionally it would have been nice to rewrite all my SASS styling following BEM. 
