@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import style from './sass/css/main.scss';
 
-import Layout from './containers/Layout.jsx';
+import Layout from './components/Layout.jsx';
 
 const app = document.getElementById('app');
 

@@ -55,12 +55,12 @@ export default class extends React.Component{
     return (
       <div>
         <h1 id='header'>
-          <button onClick={this.reload.bind(this)}>New Game</button>
+          <button className='new-game' onClick={this.reload.bind(this)}>New Game</button>
         </h1>
       <div>
         <section>
             <Choices name='rock' play={this.play}/>
-            <Choices name='paper'play={this.play}/>
+            <Choices name='paper' play={this.play}/>
             <Choices name='scissors' play={this.play}/>
             <Choices name='lizard' play={this.play}/>
             <Choices name='spock' play={this.play}/>
